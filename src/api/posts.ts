@@ -1,6 +1,6 @@
 // pages/api/posts.js
 
-import client from '../utils/graphClient'
+import client from '../lib/graphClient'
 
 // export default async function handler(req, res) {
 //   const { pageIndex = 1, limit = 3 } = req.query

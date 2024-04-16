@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import useSWR from 'swr'
+import { Button } from '@/components/ui/button'
 
-import './App.css'
 import { getPosts } from './api/posts'
 
 function App() {
@@ -42,6 +42,8 @@ function App() {
     <>
       <main>
         <h2>Software Engineering Blog</h2>
+
+        <Button>Click me</Button>
       </main>
     </>
   )
