@@ -1,18 +1,47 @@
-// pages/api/posts.js
-
 import client from '../lib/graphClient'
 
-// export default async function handler(req, res) {
-//   const { pageIndex = 1, limit = 3 } = req.query
-//   const data = await client.getEntries({
-//     content_type: 'posts',
-//     skip: pageIndex * limit,
-//     order: '-fields.publishDate',
-//     limit,
-//   })
-
-//   res.json(data)
-// }
+export const GET_POSTS_QUERY = `
+query GetAllPosts {
+  postCollection {
+    items {
+      author {
+        name
+      }
+      coverImage {
+        url
+      }
+      date
+      excerpt
+      title
+    }
+  }
+}
+`
+export const GET_POSTS_BY_CATEGORY_QUERY = `
+query GetPostsByCategory($slugs: [String!]!) {
+  categoriesCollection(where: {slug_in: $slugs}, limit: 25) {
+    items {
+      linkedFrom {
+        postCollection {
+          total
+          items {
+            title
+            excerpt
+            date
+            slug
+            coverImage {
+              url
+            }
+            author {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
 
 export const getPosts = async (query, variables) => {
   try {
