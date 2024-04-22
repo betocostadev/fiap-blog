@@ -1,6 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { IPostCard } from '@/types/posts'
+import { getPostDate } from '@/lib/dateUtils'
 
 export default function PostCard({
   post,
@@ -9,9 +10,8 @@ export default function PostCard({
   post: IPostCard
   itemIdx: number
 }) {
-  console.log(post)
   return (
-    <Card className="mt-2 mx-1">
+    <Card className="mt-4 mx-2">
       <CardHeader className="p-0 mb-2">
         <img
           src={post.coverImage.url}
@@ -40,7 +40,7 @@ export default function PostCard({
             <p>
               <em>{post.author.name}</em>
             </p>
-            <p>{new Date(post.date).toLocaleDateString()}</p>
+            <p>{getPostDate(post.date)}</p>
           </div>
         </div>
       </CardFooter>
