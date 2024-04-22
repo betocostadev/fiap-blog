@@ -13,7 +13,8 @@ export const GET_CATEGORIES_QUERY = `
   }
 `
 
-export const getCategories = async (query, variables) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getCategories = async (query: string, variables: any) => {
   try {
     const response: IcategoriesCollection = await client.request(
       query,

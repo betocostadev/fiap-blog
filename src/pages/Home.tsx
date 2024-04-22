@@ -1,31 +1,47 @@
 import CategoriesList from '@/components/CategoriesList'
-import { Skeleton } from '@/components/ui/skeleton'
+import PageHeading from '@/components/PageHeading'
+import PostCardSkeleton from '@/components/PostCardSkeleton'
+import { useEffect } from 'react'
+import { GET_LATEST_POSTS, getLatestPosts } from '@/api/posts'
+import useSWR from 'swr'
+import { IPostCard } from '@/types/posts'
+import PostCard from '@/components/PostCard'
 
 export default function Home() {
+  const {
+    data,
+    error,
+    isLoading: isLoadingPosts,
+  } = useSWR(GET_LATEST_POSTS, { fetcher: getLatestPosts })
+
+  useEffect(() => {
+    console.log(data, error, isLoadingPosts)
+  })
+
   return (
-    <main className="max-w-full max-h-full overflow-hidden">
-      <h2 className="text-xl font-bold m-2">Últimos Posts</h2>
-      <div className="flex w-3/4 items-center">
-        <div className="flex justify-between w-3/4">
-          <div className="flex flex-col space-y-3">
-            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
-          </div>
-          <div className="flex flex-col space-y-3">
-            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
-          </div>
+    <section>
+      <PageHeading
+        title="Welcome to FIAP Blog"
+        message="Frontend? Backend? We've got you covered, check the latest news in development"
+      />
+      <h2 className="text-xl font-bold m-2 text-center">Latest Posts</h2>
+      <div className="flex flex-col">
+        <div className="flex flex-col items-center justify-evenly w-full">
+          {isLoadingPosts
+            ? Array.from({ length: 4 }).map((_, index) => (
+                <PostCardSkeleton key={index} />
+              ))
+            : !error &&
+              data?.postCollection.items.map(
+                (post: IPostCard, index: number) => (
+                  <PostCard key={post.slug} post={post} itemIdx={index} />
+                )
+              )}
         </div>
         <aside>
           <CategoriesList />
         </aside>
       </div>
-    </main>
+    </section>
   )
 }

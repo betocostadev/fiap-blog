@@ -6,22 +6,6 @@ import { TCategory } from '@/types/categories'
 
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
-const CategoriesLoading = () => {
-  return (
-    <ul>
-      <li>
-        <Skeleton className="h-4 my-2 w-[180px]" />
-      </li>
-      <li>
-        <Skeleton className="h-4 my-2 w-[180px]" />
-      </li>
-      <li>
-        <Skeleton className="h-4 my-2 w-[180px]" />
-      </li>
-    </ul>
-  )
-}
-
 export default function CategoriesList() {
   const {
     data,
@@ -48,12 +32,20 @@ export default function CategoriesList() {
   })
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold">Categories</h1>
+    <div className="p-2 w-full mt-2">
+      <h2 className="text-xl font-bold text-center">Categories</h2>
       {isLoadingCategories ? (
-        CategoriesLoading()
+        <div className="flex flex-wrap w-full items-center justify-center">
+          <Skeleton className="h-4 m-2 w-1/3" />
+          <Skeleton className="h-4 m-2 w-1/3" />
+          <Skeleton className="h-4 m-2 w-1/3" />
+          <Skeleton className="h-4 m-2 w-1/3" />
+        </div>
       ) : (
-        <ToggleGroup type="multiple">
+        <ToggleGroup
+          type="multiple"
+          className="flex flex-wrap w-full items-center justify-center"
+        >
           {!isLoadingCategories &&
             !error &&
             data?.items?.map((category: TCategory) => (
