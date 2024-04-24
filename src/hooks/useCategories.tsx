@@ -2,9 +2,8 @@ import { SelectedCategoriesContext } from '@/contexts/CategoriesContext'
 import { useContext } from 'react'
 
 export const useCategories = () => {
-  const { selectedCategories, setSelectedCategories } = useContext(
-    SelectedCategoriesContext
-  )
+  const { selectedCategories, setSelectedCategories, clearSelectedCategories } =
+    useContext(SelectedCategoriesContext)
 
-  return { selectedCategories, setSelectedCategories }
+  return { selectedCategories, setSelectedCategories, clearSelectedCategories }
 }

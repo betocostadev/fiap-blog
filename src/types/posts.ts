@@ -23,6 +23,7 @@ export interface IPostCategoryResponse {
 
 export interface IPostResponse {
   postCollection: {
+    total: number
     items: IPostCard[]
   }
 }

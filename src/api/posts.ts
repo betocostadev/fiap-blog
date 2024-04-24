@@ -4,6 +4,7 @@ import client from '../lib/graphClient'
 export const GET_ALL_POSTS = `
 query GetAllPosts {
   postCollection (order: date_DESC, limit: 10) {
+    total
     items {
       author {
         name
@@ -29,6 +30,7 @@ query GetAllPosts {
 export const GET_LATEST_POSTS = `
 query GetLatestPosts {
   postCollection (order: date_DESC, limit: 4) {
+    total
     items {
       author {
         name
@@ -103,7 +105,7 @@ export const getPostsWithParams = async ([query, variables]: [string, any]) => {
     } else {
       const data = {
         items: response.postCollection.items,
-        total: response.postCollection.items.length,
+        total: response.postCollection.total,
       }
       return data
     }

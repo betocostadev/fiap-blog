@@ -56,7 +56,7 @@ export default function Posts() {
             Array.from({ length: 4 }).map((_, index) => (
               <PostCardSkeleton key={index} />
             ))
-          ) : !error && (data as ResponseData)?.items?.length === 0 ? (
+          ) : !error && (data as ResponseData)?.total === 0 ? (
             <p className="mt-2 p-4">
               No posts found for the categories selected. Please, select another
               category.

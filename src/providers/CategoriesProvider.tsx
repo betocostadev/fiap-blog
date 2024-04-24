@@ -6,6 +6,7 @@ export const SelectedCategoriesProvider: React.FC<{
   children: React.ReactNode
 }> = ({ children }) => {
   const [selectedCategories, setSelectedCategories] = useState<TCategory[]>([])
+  const clearSelectedCategories = () => setSelectedCategories([])
 
   const handleSetSelectedCategories = (category: TCategory) => {
     setSelectedCategories((prevCategories) => {
@@ -22,6 +23,7 @@ export const SelectedCategoriesProvider: React.FC<{
       value={{
         selectedCategories,
         setSelectedCategories: handleSetSelectedCategories,
+        clearSelectedCategories,
       }}
     >
       {children}

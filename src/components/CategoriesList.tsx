@@ -18,30 +18,31 @@ export default function CategoriesList() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const { selectedCategories, setSelectedCategories } = useCategories()
+  const { selectedCategories, setSelectedCategories, clearSelectedCategories } =
+    useCategories()
 
   const handleCategoryClick = (category: TCategory) => {
-    console.log('Categories List selector')
     setSelectedCategories(category)
-    console.log(selectedCategories)
     if (location.pathname === '/') {
       navigate('/posts')
     }
   }
 
   const updateDataToggle = () => {
-    // Add data-state attribute to the selected category
-    return
-    // const element = document.querySelector(
-    //   `[aria-label="Toggle ${selectedCategory.title}"]`
-    // )
-    // if (element) {
-    //   element.setAttribute('data-state', 'on')
-    // }
+    for (const category of selectedCategories) {
+      const element = document.querySelector(
+        `[aria-label="Toggle ${category.title}"]`
+      )
+      if (element) {
+        element.setAttribute('data-state', 'on')
+      }
+    }
   }
 
   useEffect(() => {
-    if (selectedCategories) {
+    if (location.pathname === '/' && selectedCategories) {
+      clearSelectedCategories()
+    } else {
       updateDataToggle()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
