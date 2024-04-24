@@ -1,11 +1,13 @@
 import CategoriesList from '@/components/CategoriesList'
 import PageHeading from '@/components/PageHeading'
 import PostCardSkeleton from '@/components/PostCardSkeleton'
-import { useEffect } from 'react'
+import { Button } from '@/components/ui/button'
+import { Loader2 } from 'lucide-react'
 import { GET_LATEST_POSTS, getPosts } from '@/api/posts'
 import useSWR from 'swr'
 import { IPostCard } from '@/types/posts'
 import PostCard from '@/components/PostCard'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const {
@@ -14,9 +16,7 @@ export default function Home() {
     isLoading: isLoadingPosts,
   } = useSWR(GET_LATEST_POSTS, { fetcher: getPosts })
 
-  useEffect(() => {
-    console.log(data, error, isLoadingPosts)
-  })
+  const navigate = useNavigate()
 
   return (
     <section>
@@ -37,6 +37,20 @@ export default function Home() {
                   <PostCard key={post.slug} post={post} itemIdx={index} />
                 )
               )}
+          {isLoadingPosts ? (
+            <Button disabled className="my-4 px-6">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button
+              variant="default"
+              className="mb-3 mt-4 px-6"
+              onClick={() => navigate('/posts')}
+            >
+              Check all posts
+            </Button>
+          )}
         </div>
         <aside>
           <CategoriesList />

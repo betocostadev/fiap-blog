@@ -1,11 +1,12 @@
 import { GET_CATEGORIES_QUERY, getCategories } from '@/api/categories'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useSWR from 'swr'
 import { Skeleton } from './ui/skeleton'
 import { TCategory } from '@/types/categories'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { useCategories } from '@/hooks/useCategories'
 
 export default function CategoriesList() {
   const {
@@ -17,40 +18,31 @@ export default function CategoriesList() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const { selectedCategories, setSelectedCategories } = useCategories()
 
   const handleCategoryClick = (category: TCategory) => {
+    console.log('Categories List selector')
+    setSelectedCategories(category)
+    console.log(selectedCategories)
     if (location.pathname === '/') {
-      navigate('/posts', { state: { category: category.slug } })
-    } else {
-      setSelectedCategories((prev) => {
-        if (prev.includes(category.slug)) {
-          return prev.filter((slug) => slug !== category.slug)
-        } else {
-          return [...prev, category.slug]
-        }
-      })
-      console.log('Selected categories: ', selectedCategories)
+      navigate('/posts')
     }
   }
 
-  const activateRoutedCategory = () => {
-    const selectedCategory = data.items.find(
-      (category: TCategory) => category.slug === location.state.category
-    )
-    console.log('Category to set', selectedCategory)
-    setSelectedCategories([selectedCategory.slug])
-    const element = document.querySelector(
-      `[aria-label="Toggle ${selectedCategory.title}"]`
-    )
-    if (element) {
-      element.setAttribute('data-state', 'on')
-    }
+  const updateDataToggle = () => {
+    // Add data-state attribute to the selected category
+    return
+    // const element = document.querySelector(
+    //   `[aria-label="Toggle ${selectedCategory.title}"]`
+    // )
+    // if (element) {
+    //   element.setAttribute('data-state', 'on')
+    // }
   }
 
   useEffect(() => {
-    if (location?.state?.category && data?.items) {
-      activateRoutedCategory()
+    if (selectedCategories) {
+      updateDataToggle()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])

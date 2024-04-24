@@ -2,7 +2,7 @@ import { IcategoriesCollection } from '@/types/categories'
 import client from '../lib/graphClient'
 
 export const GET_CATEGORIES_QUERY = `
-  query {
+  query GetAllCategories {
     categoriesCollection {
       total
       items {
@@ -20,9 +20,6 @@ export const getCategories = async (query: string, variables: any) => {
       query,
       variables
     )
-
-    console.log('Categories response')
-    console.log(response)
 
     return {
       items: response.categoriesCollection.items,

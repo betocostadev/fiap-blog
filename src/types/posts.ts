@@ -21,6 +21,12 @@ export interface IPostCategoryResponse {
   }
 }
 
+export interface IPostResponse {
+  postCollection: {
+    items: IPostCard[]
+  }
+}
+
 interface ICategoryItem {
   linkedFrom: {
     postCollection: {
