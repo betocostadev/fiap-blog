@@ -14,3 +14,18 @@ export interface IPostCard {
     items: TCategory[]
   }
 }
+
+export interface IPostCategoryResponse {
+  categoriesCollection: {
+    items: ICategoryItem[]
+  }
+}
+
+interface ICategoryItem {
+  linkedFrom: {
+    postCollection: {
+      total: number
+      items: IPostCard[]
+    }
+  }
+}

@@ -4,6 +4,7 @@ import ErrorPage from '@/pages/ErrorPage'
 import Home from '@/pages/Home'
 import Post from '@/pages/Post'
 import pathConstants from './paths'
+import Posts from '@/pages/Posts'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: pathConstants.HOME,
         element: <Home />,
+      },
+      {
+        path: pathConstants.POSTS,
+        element: <Posts />,
       },
       {
         path: pathConstants.POST_SLUG,

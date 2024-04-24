@@ -2,7 +2,7 @@ import CategoriesList from '@/components/CategoriesList'
 import PageHeading from '@/components/PageHeading'
 import PostCardSkeleton from '@/components/PostCardSkeleton'
 import { useEffect } from 'react'
-import { GET_LATEST_POSTS, getLatestPosts } from '@/api/posts'
+import { GET_LATEST_POSTS, getPosts } from '@/api/posts'
 import useSWR from 'swr'
 import { IPostCard } from '@/types/posts'
 import PostCard from '@/components/PostCard'
@@ -12,7 +12,7 @@ export default function Home() {
     data,
     error,
     isLoading: isLoadingPosts,
-  } = useSWR(GET_LATEST_POSTS, { fetcher: getLatestPosts })
+  } = useSWR(GET_LATEST_POSTS, { fetcher: getPosts })
 
   useEffect(() => {
     console.log(data, error, isLoadingPosts)
