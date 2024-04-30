@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { IPostCard } from '@/types/posts'
 import { getPostDate } from '@/lib/dateUtils'
+import { useNavigate } from 'react-router-dom'
 
 export default function PostCard({
   post,
@@ -10,8 +11,13 @@ export default function PostCard({
   post: IPostCard
   itemIdx: number
 }) {
+  const navigate = useNavigate()
+
   return (
-    <Card className="mt-4 mx-2 cursor-pointer">
+    <Card
+      className="mt-4 mx-2 cursor-pointer"
+      onClick={() => navigate(`/posts/${post.slug}`)}
+    >
       <CardHeader className="p-0 mb-2">
         <img
           src={post.coverImage.url}

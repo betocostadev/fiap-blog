@@ -1,7 +1,7 @@
 const pathConstants = {
   HOME: '/',
   POSTS: '/posts',
-  POST_SLUG: '/post/:slug',
+  POST_SLUG: '/posts/:slug',
 }
 
 export default pathConstants
