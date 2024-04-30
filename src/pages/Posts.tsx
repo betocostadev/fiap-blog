@@ -4,12 +4,14 @@ import {
   getPostsByCategory,
   getPostsWithParams,
 } from '@/api/posts'
+import { Button } from '@/components/ui/button'
 import CategoriesList from '@/components/CategoriesList'
 import PageHeading from '@/components/PageHeading'
 import PostCard from '@/components/PostCard'
 import PostCardSkeleton from '@/components/PostCardSkeleton'
 import { useCategories } from '@/hooks/useCategories'
 import { IPostCard } from '@/types/posts'
+import React from 'react'
 import useSWR from 'swr'
 
 type ResponseData = {
@@ -19,6 +21,10 @@ type ResponseData = {
 
 export default function Posts() {
   const { selectedCategories } = useCategories()
+  const [totalPages, setTotalPages] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [skip, setSkip] = React.useState(0)
+  const [postsPerPage] = React.useState(2)
 
   const getQuery = () => {
     if (selectedCategories?.length) {
@@ -39,9 +45,25 @@ export default function Posts() {
   const { data, error, isLoading } = useSWR(
     selectedCategories?.length
       ? [getQuery(), { slugs: selectedCategories.map((c) => c.slug) }]
-      : [getQuery()],
+      : [getQuery(), { skip, limit: postsPerPage }],
     getFetcher()
   )
+
+  const fetchPreviousPage = () => {
+    setCurrentPage((prev) => prev - 1)
+    setSkip((prev) => prev - postsPerPage)
+  }
+
+  const fetchNextPage = () => {
+    setCurrentPage((prev) => prev + 1)
+    setSkip((prev) => prev + postsPerPage)
+  }
+
+  React.useEffect(() => {
+    if (data) {
+      setTotalPages(Math.ceil((data as ResponseData).total! / postsPerPage))
+    }
+  }, [data, postsPerPage])
 
   return (
     <section>
@@ -69,6 +91,24 @@ export default function Posts() {
               )
             )
           )}
+          <div className="flex justify-evenly w-full">
+            <Button
+              variant="default"
+              className="mb-3 mt-4 px-6"
+              onClick={fetchPreviousPage}
+              disabled={currentPage === 1}
+            >
+              Previous page
+            </Button>
+            <Button
+              variant="default"
+              className="mb-3 mt-4 px-6"
+              onClick={fetchNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next page
+            </Button>
+          </div>
         </div>
         <aside>
           <CategoriesList />

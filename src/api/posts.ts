@@ -2,8 +2,8 @@ import { IPostCategoryResponse, IPostResponse } from '@/types/posts'
 import client from '../lib/graphClient'
 
 export const GET_ALL_POSTS = `
-query GetAllPosts {
-  postCollection (order: date_DESC, limit: 10) {
+query GetAllPosts($skip: Int!, $limit: Int!) {
+  postCollection(order: date_DESC, skip: $skip, limit: $limit) {
     total
     items {
       author {
@@ -101,7 +101,7 @@ export const getPostsWithParams = async ([query, variables]: [string, any]) => {
   try {
     const response: IPostResponse = await client.request(query, variables)
     if (response.postCollection.items.length === 0) {
-      return []
+      return { items: [], total: 0 }
     } else {
       const data = {
         items: response.postCollection.items,
@@ -139,7 +139,8 @@ export const getPostsByCategory = async ([query, variables]: [string, any]) => {
       }
       return postCollection
     } else {
-      return []
+      const postCollection = { items: [], total: 0 }
+      return postCollection
     }
   } catch (error) {
     console.error(error)
