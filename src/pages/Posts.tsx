@@ -79,7 +79,7 @@ export default function Posts() {
         message="Check our latest posts"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-x-3 px-5 md:px-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-x-2 px-5 md:px-8 lg:px-10">
         <div className="col-span-1 md:col-span-2 lg:col-span-3 lg:col-start-2">
           <div className="flex flex-col">
             <h2 className="text-xl font-bold my-2 text-center">Posts</h2>

@@ -9,7 +9,7 @@ export default function PostComponent({ post }: { post: IPost }) {
     <div className="mt-4">
       <img src={post.coverImage.url} alt="Cover" className="w-full" />
       <h1 className="text-4xl font-bold mt-6">{post.title}</h1>
-      <div className="flex sm:flex-col">
+      <div className="flex flex-col">
         <p className="text-slate-400 mt-4 mb-6 flex-1">
           {getPostDate(post.date)} by {post.author.name}
         </p>

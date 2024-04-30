@@ -24,7 +24,7 @@ export default function Home() {
         title="Welcome to FIAP Blog"
         message="Frontend? Backend? We've got you covered, check the latest news in development"
       />
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-x-3 px-5 md:px-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-x-2 px-5 md:px-8 lg:px-10">
         <div className="col-span-1 md:col-span-2 lg:col-span-3 lg:col-start-2">
           <h2 className="text-xl font-bold m-2 text-center">Latest Posts</h2>
           <div className="flex flex-col">

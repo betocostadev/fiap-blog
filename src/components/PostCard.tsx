@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { IPostCard } from '@/types/posts'
-import { getPostDate } from '@/lib/dateUtils'
+import { getPostDateCard } from '@/lib/dateUtils'
 import { useNavigate } from 'react-router-dom'
 
 export default function PostCard({
@@ -46,7 +46,7 @@ export default function PostCard({
             <p>
               <em>{post.author.name}</em>
             </p>
-            <p>{getPostDate(post.date)}</p>
+            <p>{getPostDateCard(post.date)}</p>
           </div>
         </div>
       </CardFooter>
