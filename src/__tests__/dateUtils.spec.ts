@@ -15,6 +15,13 @@ describe('getPostDate', () => {
     expect(getPostDate(yesterday)).toBe('Yesterday')
   })
 
+  test('Gets this week date as string This week', () => {
+    const thisWeek = new Date(
+      new Date().setDate(new Date().getDate() - 7)
+    ).toString()
+    expect(getPostDate(thisWeek)).toBe('This week')
+  })
+
   test('Gets past date as pt-BR local string', () => {
     const date = new Date('2024-04-18T21:00:00.000-03:00').toString()
     expect(getPostDate(date)).toBe('18/04/2024')

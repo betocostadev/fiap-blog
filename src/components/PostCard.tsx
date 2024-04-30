@@ -11,7 +11,7 @@ export default function PostCard({
   itemIdx: number
 }) {
   return (
-    <Card className="mt-4 mx-2">
+    <Card className="mt-4 mx-2 cursor-pointer">
       <CardHeader className="p-0 mb-2">
         <img
           src={post.coverImage.url}

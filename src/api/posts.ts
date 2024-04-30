@@ -29,7 +29,7 @@ query GetAllPosts($skip: Int!, $limit: Int!) {
 
 export const GET_LATEST_POSTS = `
 query GetLatestPosts {
-  postCollection (order: date_DESC, limit: 4) {
+  postCollection (order: date_DESC, limit: 2) {
     total
     items {
       author {
@@ -53,11 +53,11 @@ query GetLatestPosts {
 }
 `
 export const GET_POSTS_BY_CATEGORY = `
-query GetPostsByCategory($slugs: [String]) {
-  categoriesCollection(where: {slug_in: $slugs}, limit: 10) {
+query GetPostsByCategory($slugs: [String], $skip: Int!, $limit: Int!) {
+  categoriesCollection(where: {slug_in: $slugs}) {
     items {
       linkedFrom {
-        postCollection (order: date_DESC) {
+        postCollection (order: date_DESC, skip: $skip, limit: $limit) {
           total
           items {
             title
@@ -137,6 +137,7 @@ export const getPostsByCategory = async ([query, variables]: [string, any]) => {
         ),
         total: uniquePosts.length,
       }
+      console.log(postCollection)
       return postCollection
     } else {
       const postCollection = { items: [], total: 0 }
