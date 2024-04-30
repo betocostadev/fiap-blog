@@ -1,4 +1,4 @@
-import { IPostCategoryResponse, IPostResponse } from '@/types/posts'
+import { IPostCategoryResponse, IPostsResponse } from '@/types/posts'
 import client from '../lib/graphClient'
 
 export const GET_ALL_POSTS = `
@@ -99,7 +99,7 @@ export const getPosts = async (query: string, variables: any) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getPostsWithParams = async ([query, variables]: [string, any]) => {
   try {
-    const response: IPostResponse = await client.request(query, variables)
+    const response: IPostsResponse = await client.request(query, variables)
     if (response.postCollection.items.length === 0) {
       return { items: [], total: 0 }
     } else {

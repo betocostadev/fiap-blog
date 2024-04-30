@@ -1,29 +1,36 @@
 import { expect, test } from 'vitest'
-import { getPostDate } from '@/lib/dateUtils'
+import { getPostDateCard, getPostDate } from '@/lib/dateUtils'
 import { describe } from 'node:test'
 
-describe('getPostDate', () => {
+describe('getPostDateCard', () => {
   test('Gets today date as string Today', () => {
     const today = new Date().toString()
-    expect(getPostDate(today)).toBe('Today')
+    expect(getPostDateCard(today)).toBe('Today')
   })
 
   test('Gets yesterday date as string Yesterday', () => {
     const yesterday = new Date(
       new Date().setDate(new Date().getDate() - 1)
     ).toString()
-    expect(getPostDate(yesterday)).toBe('Yesterday')
+    expect(getPostDateCard(yesterday)).toBe('Yesterday')
   })
 
   test('Gets this week date as string This week', () => {
     const thisWeek = new Date(
       new Date().setDate(new Date().getDate() - 7)
     ).toString()
-    expect(getPostDate(thisWeek)).toBe('This week')
+    expect(getPostDateCard(thisWeek)).toBe('This week')
   })
 
   test('Gets past date as pt-BR local string', () => {
     const date = new Date('2024-04-18T21:00:00.000-03:00').toString()
-    expect(getPostDate(date)).toBe('18/04/2024')
+    expect(getPostDateCard(date)).toBe('18/04/2024')
+  })
+})
+
+describe('getPostDate', () => {
+  test('Gets date as string with full month name', () => {
+    const date = new Date('2024-04-18T21:00:00.000-03:00').toString()
+    expect(getPostDate(date)).toBe('Posted on April 18, 2024')
   })
 })

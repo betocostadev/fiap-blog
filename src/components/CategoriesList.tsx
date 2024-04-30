@@ -23,7 +23,7 @@ export default function CategoriesList() {
 
   const handleCategoryClick = (category: TCategory) => {
     setSelectedCategories(category)
-    if (location.pathname === '/') {
+    if (location.pathname !== '/posts/') {
       navigate('/posts')
     }
   }

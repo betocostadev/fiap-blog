@@ -9,6 +9,9 @@ query GetPostBySlug($slug: String!) {
       excerpt
       date
       slug
+      content {
+        json
+      }
       coverImage {
         url
       }
@@ -33,7 +36,6 @@ export const getPostBySlug = async ([query, variables]: [string, any]) => {
 
     const data = {
       items: response.postCollection.items,
-      total: response.postCollection.total,
     }
     return data
   } catch (error) {
