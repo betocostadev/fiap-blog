@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# Fiap Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository is for study purposes only.
+It was a study based on an MBA Class for Front-end Development.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## React + TypeScript + Vite
 
-## Expanding the ESLint configuration
+The project was started using a simple template from React + Vite that provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Besides, there were some more added to the tech stack:
 
-- Configure the top-level `parserOptions` property like this:
+- **SWR**: Next's SWR (Stale while revalidate) for caching
+- **GraphQL** to work with Contentful GraphQL API
+- **Shadcn** and **Tailwind** for styling
+- **Vitest** and **React testing library** for testing
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Feel free to use it as a boiler plate for a simple blog application using [Contentful](https://www.contentful.com).
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Requirements
+
+To create a project using this repository's files you need:
+
+1. Env file with your Contentful keys.
+2. Types on Contentful like the ones expected in this application.
+
+#### Env file
+
+VITE_API_KEY="Your Contentful API Key"
+
+VITE_BASE_URL="Your base URL with your Contentful space"
+
+#### Contentful Types
+
+**Author**
+
+- name: `Short text`
+- picture: `Media`
+
+**Categories**
+
+- title: `Short text`
+- slug: `Short text`
+
+**Post**
+
+- title: `Short text`
+- content: `Rich text`
+- excerpt: `Long text`
+- coverImage: `Media`
+- date: `datetime`
+- slug: `Short text`
+- author: `reference` (Reference to Author)
+- category: `references` (Many - References to categories)
