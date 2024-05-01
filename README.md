@@ -5,6 +5,8 @@ It was a study based on an MBA Class for Front-end Development.
 
 [FIAP - Software Engineering MBA](https://www.fiap.com.br/mba/mba-em-engenharia-de-software/)
 
+**Check the** [DEMO](https://fiap-blog-r7hvmuf9z-betocostadevs-projects.vercel.app/)
+
 ![Project cover](./docs/cover.jpeg)
 
 ---
@@ -28,21 +30,30 @@ Feel free to use it as a boiler plate for a simple blog application using [Conte
 
 You can clone this project an use:
 
-`npm run dev` to run this project in development mode
+- `npm run dev` to run this project in development mode
+- `npm test` to execute the included tests
+- `npm run lint` to execute Eslint
 
-`npm test` to execute the included tests
+If you plan on deploying the App, do the following:
+
+1. Run `npm run build` to generate the `/dist/` folder.
+2. Run `npm run preview` to execute.
+
+---
 
 ## Requirements
 
 To create a project using this repository's files you need:
 
-1. Env file with your Contentful keys.
+1. Environment variables file `.env` with your Contentful keys.
 2. Types on Contentful like the ones expected in this application.
 
-### Env file
+### Environment variables
 
 - VITE_API_KEY="Your Contentful API Key"
 - VITE_BASE_URL="Your base URL with your Contentful space"
+
+Dont't forget to add your enviroment variables to your provider if you plan to deploy it.
 
 ### Contentful Content models
 
@@ -72,3 +83,5 @@ To create a project using this repository's files you need:
 - category: `references` (Many - References to categories)
 
 ![Post fields in Contentful](./docs/contentful-post.jpeg)
+
+If you have any problems, please contact me
