@@ -32,7 +32,7 @@ export default function Post() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-x-2 px-5 md:px-8 lg:px-10">
       <div className="col-span-1 md:col-span-3 lg:col-span-4 lg:col-start-2">
-        {!error && (
+        {error && (
           <div className="flex justify-center items-center h-12">
             Failed to load post, please try again later.
           </div>
