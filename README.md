@@ -2,7 +2,10 @@
 
 This repository is for study purposes only.
 It was a study based on an MBA Class for Front-end Development.
+
 [FIAP - Software Engineering MBA](https://www.fiap.com.br/mba/mba-em-engenharia-de-software/)
+
+![Project cover](./docs/cover.jpeg)
 
 ---
 
@@ -21,7 +24,7 @@ Feel free to use it as a boiler plate for a simple blog application using [Conte
 
 ---
 
-### Running this project
+## Running this project
 
 You can clone this project an use:
 
@@ -29,31 +32,35 @@ You can clone this project an use:
 
 `npm test` to execute the included tests
 
-### Requirements
+## Requirements
 
 To create a project using this repository's files you need:
 
 1. Env file with your Contentful keys.
 2. Types on Contentful like the ones expected in this application.
 
-#### Env file
+### Env file
 
 - VITE_API_KEY="Your Contentful API Key"
 - VITE_BASE_URL="Your base URL with your Contentful space"
 
-#### Contentful Content models
+### Contentful Content models
 
-**Author**
+**Author fields**
 
-- name: `Short text`
-- picture: `Media`
+- Name: `Short text`
+- Picture: `Media`
 
-**Categories**
+![Author fields in Contentful](./docs/contentful-author.jpeg)
+
+**Categories fields**
 
 - title: `Short text`
 - slug: `Short text`
 
-**Post**
+![Categories fields in Contentful](./docs/contentful-categories.jpeg)
+
+**Post fields**
 
 - title: `Short text`
 - content: `Rich text`
@@ -63,3 +70,5 @@ To create a project using this repository's files you need:
 - slug: `Short text`
 - author: `reference` (Reference to Author)
 - category: `references` (Many - References to categories)
+
+![Post fields in Contentful](./docs/contentful-post.jpeg)

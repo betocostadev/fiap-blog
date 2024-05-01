@@ -11,7 +11,7 @@ import PostCard from '@/components/PostCard'
 import PostCardSkeleton from '@/components/PostCardSkeleton'
 import { useCategories } from '@/hooks/useCategories'
 import { IPostCard } from '@/types/posts'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 
 type ResponseData = {
@@ -21,10 +21,10 @@ type ResponseData = {
 
 export default function Posts() {
   const { selectedCategories } = useCategories()
-  const [totalPages, setTotalPages] = React.useState(0)
-  const [currentPage, setCurrentPage] = React.useState(1)
-  const [skip, setSkip] = React.useState(0)
-  const [postsPerPage] = React.useState(3)
+  const [totalPages, setTotalPages] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [skip, setSkip] = useState(0)
+  const [postsPerPage] = useState(3)
 
   const getQuery = () => {
     if (selectedCategories?.length) {
@@ -66,11 +66,11 @@ export default function Posts() {
     setSkip((prev) => prev + postsPerPage)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (data) {
       setTotalPages(Math.ceil((data as ResponseData).total! / postsPerPage))
-      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [data, postsPerPage])
 
   return (

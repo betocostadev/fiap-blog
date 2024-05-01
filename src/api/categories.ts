@@ -22,7 +22,9 @@ export const getCategories = async (query: string, variables: any) => {
     )
 
     return {
-      items: response.categoriesCollection.items,
+      items: response.categoriesCollection.items.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      ),
       total: response.categoriesCollection.total,
     }
   } catch (error) {
