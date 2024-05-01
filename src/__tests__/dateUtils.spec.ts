@@ -22,9 +22,16 @@ describe('getPostDateCard', () => {
     expect(getPostDateCard(thisWeek)).toBe('This week')
   })
 
+  test('Gets past week date as string Past week', () => {
+    const pastWeek = new Date(
+      new Date().setDate(new Date().getDate() - 14)
+    ).toString()
+    expect(getPostDateCard(pastWeek)).toBe('Past week')
+  })
+
   test('Gets past date as pt-BR local string', () => {
-    const date = new Date('2024-04-18T21:00:00.000-03:00').toString()
-    expect(getPostDateCard(date)).toBe('18/04/2024')
+    const date = new Date('2024-03-10T21:00:00.000-03:00').toString()
+    expect(getPostDateCard(date)).toBe('10/03/2024')
   })
 })
 

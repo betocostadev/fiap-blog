@@ -7,13 +7,18 @@ export function getPostDateCard(date: string): string {
   const thisWeek = new Date(
     new Date().setDate(new Date().getDate() - 7)
   ).toLocaleDateString('pt-BR')
+  const pastWeek = new Date(
+    new Date().setDate(new Date().getDate() - 14)
+  ).toLocaleDateString('pt-BR')
 
   return newDate === today
     ? 'Today'
     : newDate === yesterday
     ? 'Yesterday'
-    : newDate === thisWeek
+    : newDate >= thisWeek
     ? 'This week'
+    : newDate >= pastWeek
+    ? 'Past week'
     : newDate
 }
 

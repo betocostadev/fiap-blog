@@ -69,14 +69,15 @@ export default function Posts() {
   React.useEffect(() => {
     if (data) {
       setTotalPages(Math.ceil((data as ResponseData).total! / postsPerPage))
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }, [data, postsPerPage])
 
   return (
     <section>
       <PageHeading
-        title="Welcome to FIAP Blog"
-        message="Check our latest posts"
+        title="Learn more about everything"
+        message="Check our latest posts to stay up to date with the latest news in development, and much more!"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-x-2 px-5 md:px-8 lg:px-10">

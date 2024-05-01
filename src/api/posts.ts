@@ -137,7 +137,6 @@ export const getPostsByCategory = async ([query, variables]: [string, any]) => {
         ),
         total: uniquePosts.length,
       }
-      console.log(postCollection)
       return postCollection
     } else {
       const postCollection = { items: [], total: 0 }
